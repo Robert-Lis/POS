@@ -1,17 +1,18 @@
 package service.implementation;
 
+import exceptions.EnitytNotFoundException;
+import model.Product;
 import model.Receipt;
 import service.ReceiptService;
+import utilities.ReceiptUtility;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
+import java.time.LocalDateTime;
+import java.util.*;
 
 public class ReceiptServiceStubImpl implements ReceiptService {
 
     private List<Receipt> receipts = new ArrayList<>();
-
+    ReceiptUtility receiptUtility = new ReceiptUtility();
 
     @Override
     public List<Receipt> findAll() {
@@ -19,10 +20,11 @@ public class ReceiptServiceStubImpl implements ReceiptService {
     }
 
     @Override
-    public Optional<Receipt> findById(Long id) {
+    public Receipt findById(Long id) throws EnitytNotFoundException {
         return this.receipts.stream()
                 .filter(r -> Objects.equals(r.getId(), id))
-                .findFirst();
+                .findFirst()
+                .orElseThrow(() -> new EnitytNotFoundException(Receipt.class, id));
     }
 
     @Override
@@ -37,8 +39,23 @@ public class ReceiptServiceStubImpl implements ReceiptService {
         return receipt;
     }
 
+
     @Override
-    public String printById(Long id) {
-        return findById(id).toString();
+    public void printById(Receipt receipt){
+        LocalDateTime currentDate = LocalDateTime.now();
+        receipt.setTimeOfPrinting(currentDate);
+        String receiptText;
+
+        receiptText = receiptUtility.print(receipt);
+        receiptUtility.printToFile(receipt.getId(), receiptText);
+        receiptUtility.printToConsole(receiptText);
     }
+
+    @Override
+    public void addProduct(Product productToAdd, Receipt receipt) {
+        receipt.addProduct(productToAdd);
+        System.out.println("Product: " + productToAdd.getName() + " added.");
+    }
+
+
 }

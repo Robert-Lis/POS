@@ -1,15 +1,14 @@
 package service;
 
+import exceptions.EnitytNotFoundException;
 import model.Product;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface ProductService {
 
     List<Product> findAll();
-    Optional<Product> findById(Long id);
+    Product findById(Long id) throws EnitytNotFoundException;
     Product create(Product product);
-
-
+    Product getProductToAdd(Long barcode, ProductService productService) throws EnitytNotFoundException;
 }

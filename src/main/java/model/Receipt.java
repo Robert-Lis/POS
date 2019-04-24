@@ -1,6 +1,7 @@
 package model;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Receipt {
@@ -11,14 +12,11 @@ public class Receipt {
 
 
     public Receipt() {
-    }
-
-    public Receipt(List<Product> products) {
-        this.products = products;
+        this.products = new ArrayList<>();
     }
 
     public void addProduct(Product product) {
-        products.add(product);
+        this.products.add(product);
     }
 
     public Long getId() {
@@ -29,7 +27,21 @@ public class Receipt {
         this.id = id;
     }
 
+    public List<Product> getProducts() {
+        return products;
+    }
+
     public void setTimeOfPrinting(LocalDateTime timeOfPrinting) {
         this.timeOfPrinting = timeOfPrinting;
+    }
+
+
+    @Override
+    public String toString() {
+        return "Receipt{" +
+                "id=" + id +
+                ", products=" + products +
+                ", timeOfPrinting=" + timeOfPrinting +
+                '}';
     }
 }
