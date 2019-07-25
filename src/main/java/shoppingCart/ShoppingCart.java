@@ -1,17 +1,20 @@
-package model;
+package shoppingCart;
+
+import product.Product;
+import utilities.DateFormatter;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Receipt {
+public class ShoppingCart {
 
     private Long id;
     private List<Product> products;
     private LocalDateTime timeOfPrinting;
 
 
-    public Receipt() {
+    public ShoppingCart() {
         this.products = new ArrayList<>();
     }
 
@@ -38,10 +41,8 @@ public class Receipt {
 
     @Override
     public String toString() {
-        return "Receipt{" +
-                "id=" + id +
-                ", products=" + products +
-                ", timeOfPrinting=" + timeOfPrinting +
-                '}';
+        return "ShoppingCart" + id + "\n" +
+                products + "\n" +
+                "TimeOfPrinting: " + DateFormatter.dateFormatter(timeOfPrinting);
     }
 }

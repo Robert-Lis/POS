@@ -1,24 +1,23 @@
-package model;
+package product;
 
-import utilities.MainUtility;
+import utilities.DecimalFormatter;
 
 import java.math.BigDecimal;
 
 public class Product {
 
     private Long id;
-    private int barcode;
+    private Integer barcode;
     private String name;
     private BigDecimal price;
 
-    public Product() {
-    }
 
     public Product(int barcode, String name, BigDecimal price) {
         this.barcode = barcode;
         this.name = name;
         this.price = price;
     }
+
 
     public Long getId() {
         return id;
@@ -32,23 +31,18 @@ public class Product {
         return name;
     }
 
-    public String getPriceAsString() {
-        return MainUtility.df2.format(price);
+    public int getBarcode() {
+        return barcode;
     }
-
-    public BigDecimal getPrice() {
-        return price;
-    }
-
-
 
     @Override
     public String toString() {
-        return "Product{" +
-                "id=" + id +
-                ", barcode=" + barcode +
-                ", name='" + name + '\'' +
-                ", price=" + MainUtility.df2.format(price) +
-                '}';
+        return "Product:\n" +
+                " id: " + id +
+                ", barcode: " + barcode +
+                ", name: '" + name + '\'' +
+                ", price: " + DecimalFormatter.decimalFormat2.format(price) +
+                '\n';
     }
+
 }
