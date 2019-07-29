@@ -38,11 +38,18 @@ public class ShoppingCart {
         this.timeOfPrinting = timeOfPrinting;
     }
 
+    public String getAllProductsAsString(){
+        StringBuilder allProductsBuilder = new StringBuilder();
+        for (int i = 0; i < products.size(); i++) {
+            allProductsBuilder.append(i+1).append(" ").append(products.get(i));
+        }
+        return allProductsBuilder.toString();
+    }
 
     @Override
     public String toString() {
         return "ShoppingCart" + id + "\n" +
-                products + "\n" +
+                getAllProductsAsString() + "\n" +
                 "TimeOfPrinting: " + DateFormatter.dateFormatter(timeOfPrinting);
     }
 }

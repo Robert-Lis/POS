@@ -13,6 +13,7 @@ public class PrintOutput implements Output{
     @Override
     public void getOutput(ShoppingCart cart, Scanner scanner) {
         cart.setTimeOfPrinting(LocalDateTime.now());
+
         ScreenPrintedOutput screenOutput = new ScreenPrintedOutput();
         screenOutput.print(cart);
 

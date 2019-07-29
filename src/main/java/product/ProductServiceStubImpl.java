@@ -17,11 +17,11 @@ public class ProductServiceStubImpl implements ProductService{
 
     public void dbInit() throws ProductNotExistedException {
 
-        products.add(new Product(123456789, "Shoes", new BigDecimal(22.99)));
-        products.add(new Product(123456788, "Coat", new BigDecimal(22.99)));
-        products.add(new Product(123456787, "Jeans", new BigDecimal(22.99)));
-        products.add(new Product(123456786, "T-shirt", new BigDecimal(22.99)));
-        products.add(new Product(123456785, "Gloves", new BigDecimal(22.99)));
+        addProduct(new Product(123456789, "Shoes", new BigDecimal(22.00)));
+        addProduct(new Product(123456788, "Coat", new BigDecimal(20.00)));
+        addProduct(new Product(123456787, "Jeans", new BigDecimal(18.00)));
+        addProduct(new Product(123456786, "T-shirt", new BigDecimal(16.00)));
+        addProduct(new Product(123456785, "Gloves", new BigDecimal(14.00)));
 
         System.out.println("Product database initialized.");
     }
@@ -47,7 +47,6 @@ public class ProductServiceStubImpl implements ProductService{
         try {
             product = setIdForNewProduct(product);
             products.add(product);
-            System.out.println("New product added: " + product.getId() + ", " + product.getName());
         } catch (NullPointerException exception){
             throw new ProductNotExistedException();
         }
@@ -67,8 +66,9 @@ public class ProductServiceStubImpl implements ProductService{
             product.setId(Long.valueOf(1));
         }
         if (products.size() > 0){
-            Long lastAddedProductID = products.get(products.size() - 1).getId();
-            product.setId(lastAddedProductID);
+            Product lastProductFromDb = products.get(products.size() - 1);
+            Long idForAddingProduct = lastProductFromDb.getId() + 1;
+            product.setId(idForAddingProduct);
         }
         return product;
     }

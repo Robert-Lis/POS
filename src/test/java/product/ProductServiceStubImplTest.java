@@ -39,6 +39,16 @@ class ProductServiceStubImplTest {
         public void shouldCheckIfDbisEmpty() {
             assertTrue(productService.getAll().isEmpty());
         }
+
+                @Test
+        public void addedProductsShouldHaveId() throws ProductNotExistedException {
+            productService.dbInit();
+
+            for (int i = 0; i < productService.getAll().size(); i++) {
+                System.out.println(productService.getAll().get(i).getId());
+                assertNotNull(productService.getAll().get(i).getId());
+            }
+        }
     }
 
 
@@ -50,7 +60,10 @@ class ProductServiceStubImplTest {
 
             productService.addProduct(product);
 
-            assertEquals(product, productService.getAll().get(indexOfAddingProduct));
+            assertAll(
+                    () -> assertEquals(product, productService.getAll().get(indexOfAddingProduct)),
+                    () -> assertNotNull(productService.getAll().get(indexOfAddingProduct).getId())
+            );
         }
 
         @Test

@@ -37,9 +37,7 @@ public class Product {
 
     @Override
     public String toString() {
-        return "Product:\n" +
-                " id: " + id +
-                ", barcode: " + barcode +
+        return  ", barcode: " + barcode +
                 ", name: '" + name + '\'' +
                 ", price: " + DecimalFormatter.decimalFormat2.format(price) +
                 '\n';
