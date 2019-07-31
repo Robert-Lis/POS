@@ -17,9 +17,10 @@ public class ShoppingCartServiceStubImpl implements ShoppingCartService {
     public ShoppingCart getNewShoppingCart() {
         ShoppingCart shoppingCart = new ShoppingCart();
         shoppingCart = setIdForNewShoppingCart(shoppingCart);
+        shoppingcarts.add(shoppingCart);
+        System.out.println("New shopping cart open: " + shoppingCart.getId());
         return shoppingCart;
     }
-
 
 
     private ShoppingCart setIdForNewShoppingCart(ShoppingCart cart) {
@@ -27,7 +28,7 @@ public class ShoppingCartServiceStubImpl implements ShoppingCartService {
             cart.setId(Long.valueOf(1));
         }
         if (shoppingcarts.size() > 0){
-            Long lastAddedProductID = shoppingcarts.get(shoppingcarts.size() - 1).getId();
+            Long lastAddedProductID = shoppingcarts.get(shoppingcarts.size() - 1).getId() + 1;
             cart.setId(lastAddedProductID);
         }
         return cart;

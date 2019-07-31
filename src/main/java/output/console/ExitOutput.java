@@ -1,14 +1,15 @@
 package output.console;
 
-import shoppingCart.ShoppingCart;
+import shoppingCart.ShoppingCartData;
 
 import java.util.Scanner;
 
 public class ExitOutput implements Output {
 
     @Override
-    public void getOutput(ShoppingCart cart, Scanner scanner) {
+    public ShoppingCartData getOutput(ShoppingCartData shoppingCartData, Scanner scanner) {
         System.out.println("Goodbye!");
         scanner.close();
+        return shoppingCartData;
     }
 }

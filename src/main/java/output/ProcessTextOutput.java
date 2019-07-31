@@ -1,15 +1,15 @@
 package output;
 
 import output.console.Output;
-import shoppingCart.ShoppingCart;
+import shoppingCart.ShoppingCartData;
 
 import java.util.Scanner;
 
 public class ProcessTextOutput {
 
 
-    public static void getOutput(String input, ShoppingCart cart, Scanner scanner) {
+    public static ShoppingCartData getOutput(String input, ShoppingCartData shoppingCartData, Scanner scanner) {
         Output output = TextOutputs.get(input);
-        output.getOutput(cart, scanner);
+        return output.getOutput(shoppingCartData, scanner);
     }
 }

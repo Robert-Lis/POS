@@ -9,12 +9,14 @@ import shoppingCart.ShoppingCartServiceStubImpl;
 public class ProcessBarcodeOutput {
 
 
-    public static void getOutput(String input, ShoppingCart cart) throws EntityNotFoundByBarcodeException {
+    public static ShoppingCart getOutput(String input, ShoppingCart cart) throws EntityNotFoundByBarcodeException {
         ProductServiceStubImpl productService = new ProductServiceStubImpl();
         ShoppingCartServiceStubImpl shoppingCartService = new ShoppingCartServiceStubImpl();
 
         Product product = productService.getProductByBarcode(Integer.valueOf(input));
 
         shoppingCartService.addProductToShoppingCart(product, cart);
+
+        return cart;
     }
 }

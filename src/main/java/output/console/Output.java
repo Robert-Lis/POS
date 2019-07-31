@@ -1,10 +1,10 @@
 package output.console;
 
-import shoppingCart.ShoppingCart;
+import shoppingCart.ShoppingCartData;
 
 import java.util.Scanner;
 
 public interface Output {
 
-    void getOutput(ShoppingCart cart, Scanner scanner);
+    ShoppingCartData getOutput(ShoppingCartData shoppingCartData, Scanner scanner);
 }

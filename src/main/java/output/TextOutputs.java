@@ -15,7 +15,6 @@ public class TextOutputs {
         if (outputs.isEmpty()){
             fillMap();
         }
-        //TODO:sprawdzić jak to działa
         return outputs.get(input);
     }
 
@@ -28,7 +27,6 @@ public class TextOutputs {
     private static void fillMap() {
         add("exit", new ExitOutput());
         add("print", new PrintOutput());
-
     }
 
 }

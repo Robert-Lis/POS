@@ -41,15 +41,15 @@ public class ShoppingCart {
     public String getAllProductsAsString(){
         StringBuilder allProductsBuilder = new StringBuilder();
         for (int i = 0; i < products.size(); i++) {
-            allProductsBuilder.append(i+1).append(" ").append(products.get(i));
+            allProductsBuilder.append(i+1).append(products.get(i));
         }
         return allProductsBuilder.toString();
     }
 
     @Override
     public String toString() {
-        return "ShoppingCart" + id + "\n" +
-                getAllProductsAsString() + "\n" +
-                "TimeOfPrinting: " + DateFormatter.dateFormatter(timeOfPrinting);
+        return "Shopping cart " + id + "\n" +
+                "Time of printing: " + DateFormatter.dateFormatter(timeOfPrinting) + "\n" +
+                getAllProductsAsString();
     }
 }
